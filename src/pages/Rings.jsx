@@ -2,7 +2,7 @@ import { useState } from "react";
 import products from "../data/products";
 import ProductCard from "../components/ProductCard";
 
-export default function Shop() {
+export default function Rings() {
   const [selectedType, setSelectedType] = useState(null);
 
   const ringProducts = products.filter((p) => p.category === "ring");
@@ -13,44 +13,46 @@ export default function Shop() {
       : ringProducts.filter((p) => p.type === selectedType);
 
   return (
-    <div style={{ padding: "80px 20px", textAlign: "center" }}>
+    <div style={{ padding: "100px 20px", textAlign: "center" }}>
       <h1>Rings Collection</h1>
 
-      {/* MAIN 2 CARDS */}
       {selectedType === null && (
-        <div style={{ display: "flex", gap: "30px", justifyContent: "center", marginTop: "40px" }}>
+        <div style={{ display: "flex", gap: "40px", justifyContent: "center", marginTop: "40px" }}>
           <div
             onClick={() => setSelectedType("ad")}
             style={{
-              padding: "40px",
-              border: "1px solid #ccc",
-              cursor: "pointer",
+              padding: "50px",
+              border: "2px solid gold",
               borderRadius: "12px",
+              cursor: "pointer",
+              minWidth: "250px"
             }}
           >
             <h2>AD Rings</h2>
+            <p>{ringProducts.filter(p => p.type === "ad").length} Rings</p>
           </div>
 
           <div
             onClick={() => setSelectedType("adjustable")}
             style={{
-              padding: "40px",
-              border: "1px solid #ccc",
-              cursor: "pointer",
+              padding: "50px",
+              border: "2px solid gold",
               borderRadius: "12px",
+              cursor: "pointer",
+              minWidth: "250px"
             }}
           >
             <h2>Adjustable Rings</h2>
+            <p>{ringProducts.filter(p => p.type === "adjustable").length} Rings</p>
           </div>
         </div>
       )}
 
-      {/* SHOW RINGS AFTER CLICK */}
       {selectedType !== null && (
         <>
           <button
             onClick={() => setSelectedType(null)}
-            style={{ marginTop: "20px", marginBottom: "20px" }}
+            style={{ margin: "20px 0" }}
           >
             Back
           </button>

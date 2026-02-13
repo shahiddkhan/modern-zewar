@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
-import Footer from "../components/Footer";
+import EmptySection from "../components/EmptySection";
 import products from "../data/products";
 
 export default function Home() {
@@ -16,60 +16,58 @@ export default function Home() {
     <>
       <Navbar setCategory={setCategory} />
 
-      {/* HERO */}
-      <section
+      <div
         style={{
-          padding: "90px 20px 50px",
-          textAlign: "center",
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
-      >
-        <h1
-          style={{
-            fontFamily: "Playfair Display",
-            fontSize: "42px",
-            marginBottom: "12px",
-          }}
-        >
-          Modern Women’s Accessories
-        </h1>
-
-        <p
-          style={{
-            fontSize: "16px",
-            opacity: 0.65,
-            maxWidth: "600px",
-            margin: "0 auto",
-          }}
-        >
-          Discover rings, bracelets, chains & luxury pieces crafted for elegance.
-        </p>
-      </section>
-
-      {/* PRODUCTS */}
-      <section
-        style={{
-          padding: "0 40px",
-          maxWidth: "1300px",
-          margin: "0 auto",
+          minHeight: "100vh",
+          padding: "40px 15px",
         }}
       >
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "36px",
+            maxWidth: "1200px",
+            margin: "0 auto",
           }}
         >
-          {filtered.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+          <h1
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(28px, 5vw, 42px)",
+              marginBottom: "15px",
+              color: "#722F37",
+            }}
+          >
+            Modern Women’s Accessories
+          </h1>
 
-      {/* FOOTER */}
-      <Footer />
+          <p
+            style={{
+              textAlign: "center",
+              marginBottom: "50px",
+              color: "#722F37",
+              opacity: 0.8,
+            }}
+          >
+            Discover premium handcrafted jewelry crafted for elegance.
+          </p>
+
+          {filtered.length === 0 ? (
+            <EmptySection title={category.toUpperCase()} />
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns:
+                  "repeat(auto-fit, minmax(240px, 1fr))",
+                gap: "25px",
+              }}
+            >
+              {filtered.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 }

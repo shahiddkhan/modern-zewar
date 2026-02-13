@@ -1,26 +1,51 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;   /* 🔥 fixes right white space */
+  width: 100%;
 }
 
 body {
-  margin: 0;
   font-family: "Inter", sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  background: #EFDFBB;
+  color: #722F37;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-family: "Playfair Display", serif;
 }
 
-:root {
-  --bg: #ffffff;
-  --text: #111111;
+/* Responsive Navbar */
+
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  .mobile-menu {
+    display: block !important;
+  }
+}
+/* Mobile Navbar Fix */
+
+.desktop-menu {
+  display: flex;
 }
 
-[data-theme="dark"] {
-  --bg: #0a0a0a;
-  --text: #f5f5f5;
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  .mobile-menu {
+    display: block !important;
+  }
 }

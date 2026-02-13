@@ -1,137 +1,138 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import products from "../data/products";
-import { useEffect, useState } from "react";
+import { WHATSAPP_NUMBER } from "../config";
 
 export default function Product() {
   const { id } = useParams();
-  const product = products.find((p) => String(p.id) === String(id));
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
-  // ESC key close
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
+  const product = products.find((p) => p.id === Number(id));
 
-  if (!product) return null;
+  if (!product) {
+    return <h2 style={{ padding: "40px" }}>Product not found</h2>;
+  }
+
+  const goldIds = [16, 17, 19, 20, 21];
+
+  const description = goldIds.includes(product.id)
+    ? "Gold Adjustable Ring"
+    : "AD Adjustable Ring";
+
+  const productLink = window.location.href;
+
+  const message = encodeURIComponent(
+`Hi,
+
+I am interested in this product:
+
+Product: ${product.name}
+Description: ${description}
+Price: ₹199
+
+Product Link: ${productLink}`
+  );
 
   return (
-    <>
-      {/* PRODUCT IMAGE */}
+    <div
+      style={{
+        background: "#EFDFBB",
+        minHeight: "100vh",
+        padding: "60px 20px",
+      }}
+    >
       <div
         style={{
-          maxWidth: "520px",
-          margin: "60px auto 24px",
-          cursor: "zoom-in",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "60px",
+          alignItems: "center",
+          justifyContent: "center",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          animation: "fadeIn 0.6s ease",
         }}
-        onClick={() => setOpen(true)}
       >
+        {/* IMAGE */}
         <img
           src={product.image}
           alt={product.name}
           style={{
             width: "100%",
-            borderRadius: "20px",
-            objectFit: "cover",
-            boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+            maxWidth: "480px",
+            borderRadius: "24px",
+            boxShadow: "0 20px 50px rgba(114,47,55,0.25)",
           }}
         />
-      </div>
 
-      {/* PRODUCT INFO */}
-      <div style={{ textAlign: "center", marginBottom: "80px" }}>
-        <h2
-          style={{
-            fontFamily: "Playfair Display",
-            fontSize: "28px",
-            marginBottom: "8px",
-          }}
-        >
-          {product.name}
-        </h2>
-
-        <p style={{ opacity: 0.65, fontSize: "15px" }}>
-          {product.description}
-        </p>
-      </div>
-
-      {/* IMAGE PREVIEW MODAL */}
-      {open && (
-        <div
-          onClick={() => setOpen(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.55)",
-            backdropFilter: "blur(6px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-          }}
-        >
-          {/* STOP CLICK PROPAGATION */}
-          <div
-            onClick={(e) => e.stopPropagation()}
+        {/* DETAILS */}
+        <div style={{ maxWidth: "520px" }}>
+          <h1
             style={{
-              position: "relative",
-              animation: "zoomIn 0.25s ease",
+              fontSize: "34px",
+              marginBottom: "18px",
+              color: "#722F37",
             }}
           >
-            {/* CLOSE BUTTON */}
-            <button
-              onClick={() => setOpen(false)}
-              style={{
-                position: "absolute",
-                top: "-14px",
-                right: "-14px",
-                width: "34px",
-                height: "34px",
-                borderRadius: "50%",
-                border: "none",
-                background: "#000",
-                color: "#fff",
-                fontSize: "18px",
-                cursor: "pointer",
-              }}
-            >
-              ×
-            </button>
+            {product.name}
+          </h1>
 
-            <img
-              src={product.image}
-              alt={product.name}
-              style={{
-                maxWidth: "90vw",
-                maxHeight: "85vh",
-                borderRadius: "18px",
-                objectFit: "contain",
-                boxShadow: "0 30px 60px rgba(0,0,0,0.4)",
-              }}
-            />
-          </div>
+          <p
+            style={{
+              marginBottom: "25px",
+              fontSize: "18px",
+              color: "#722F37",
+              opacity: 0.85,
+            }}
+          >
+            {description}
+          </p>
+
+          <h2
+            style={{
+              marginBottom: "35px",
+              color: "#722F37",
+              fontSize: "26px",
+              fontWeight: "600",
+            }}
+          >
+            ₹199
+          </h2>
+
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              padding: "15px 32px",
+              background: "#722F37",
+              color: "#EFDFBB",
+              borderRadius: "999px",
+              textDecoration: "none",
+              fontWeight: "600",
+              marginRight: "15px",
+              marginBottom: "15px",
+              transition: "0.3s ease",
+            }}
+          >
+            Order on WhatsApp
+          </a>
+
+          <button
+            onClick={() => navigate(-1)}
+            style={{
+              padding: "10px 24px",
+              borderRadius: "999px",
+              border: "1px solid #722F37",
+              background: "transparent",
+              color: "#722F37",
+              cursor: "pointer",
+            }}
+          >
+            Back
+          </button>
         </div>
-      )}
-
-      {/* ZOOM ANIMATION */}
-      <style>
-        {`
-          @keyframes zoomIn {
-            from {
-              transform: scale(0.9);
-              opacity: 0;
-            }
-            to {
-              transform: scale(1);
-              opacity: 1;
-            }
-          }
-        `}
-      </style>
-    </>
+      </div>
+    </div>
   );
 }
