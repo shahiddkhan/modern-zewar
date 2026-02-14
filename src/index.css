@@ -1,51 +1,19 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html, body {
-  overflow-x: hidden;   /* 🔥 fixes right white space */
-  width: 100%;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: #EFDFBB;
+  background-color: #F5E6C8;
+  font-family: "Playfair Display", serif;
   color: #722F37;
 }
 
+button {
+  font-family: inherit;
+}
+
 h1, h2, h3 {
-  font-family: "Playfair Display", serif;
-}
-
-/* Responsive Navbar */
-
-@media (max-width: 768px) {
-  .desktop-menu {
-    display: none !important;
-  }
-
-  .mobile-menu {
-    display: block !important;
-  }
-}
-/* Mobile Navbar Fix */
-
-.desktop-menu {
-  display: flex;
-}
-
-.mobile-menu {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .desktop-menu {
-    display: none !important;
-  }
-
-  .mobile-menu {
-    display: block !important;
-  }
+  letter-spacing: 1px;
 }

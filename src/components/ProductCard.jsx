@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { theme } from "../theme";
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -11,22 +12,20 @@ export default function ProductCard({ product }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        background: "#ffffff",
+        background: theme.softWhite,
         borderRadius: "20px",
-        padding: "15px",
-        boxShadow: hover
-          ? "0 20px 50px rgba(114,47,55,0.3)"
-          : "0 10px 30px rgba(114,47,55,0.15)",
+        padding: "20px",
+        boxShadow: theme.shadow,
         textAlign: "center",
         cursor: "pointer",
+        transition: "0.3s",
         transform: hover ? "translateY(-8px)" : "translateY(0)",
-        transition: "all 0.3s ease",
       }}
     >
       <div
         style={{
           overflow: "hidden",
-          borderRadius: "14px",
+          borderRadius: "15px",
         }}
       >
         <img
@@ -34,10 +33,10 @@ export default function ProductCard({ product }) {
           alt={product.name}
           style={{
             width: "100%",
-            height: "230px",
+            height: "250px",
             objectFit: "cover",
-            transform: hover ? "scale(1.08)" : "scale(1)",
-            transition: "transform 0.4s ease",
+            transition: "0.4s",
+            transform: hover ? "scale(1.05)" : "scale(1)",
           }}
         />
       </div>
@@ -45,7 +44,8 @@ export default function ProductCard({ product }) {
       <h3
         style={{
           marginTop: "15px",
-          color: "#722F37",
+          color: theme.maroon,
+          fontWeight: "600",
         }}
       >
         {product.name}

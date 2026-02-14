@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
-import EmptySection from "../components/EmptySection";
 import products from "../data/products";
+import { theme } from "../theme";
 
 export default function Home() {
   const [category, setCategory] = useState("all");
@@ -19,53 +19,44 @@ export default function Home() {
       <div
         style={{
           minHeight: "100vh",
-          padding: "40px 15px",
+          padding: "60px 20px",
+          background: theme.cream,
         }}
       >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
+        <div style={{ maxWidth: "1200px", margin: "auto" }}>
           <h1
             style={{
               textAlign: "center",
-              fontSize: "clamp(28px, 5vw, 42px)",
-              marginBottom: "15px",
-              color: "#722F37",
+              fontSize: "clamp(32px,5vw,48px)",
+              marginBottom: "20px",
+              color: theme.maroon,
             }}
           >
-            Modern Women’s Accessories
+            Modern Women's Accessories
           </h1>
 
           <p
             style={{
               textAlign: "center",
-              marginBottom: "50px",
-              color: "#722F37",
+              marginBottom: "60px",
               opacity: 0.8,
             }}
           >
             Discover premium handcrafted jewelry crafted for elegance.
           </p>
 
-          {filtered.length === 0 ? (
-            <EmptySection title={category.toUpperCase()} />
-          ) : (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns:
-                  "repeat(auto-fit, minmax(240px, 1fr))",
-                gap: "25px",
-              }}
-            >
-              {filtered.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          )}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(250px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {filtered.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
         </div>
       </div>
     </>
