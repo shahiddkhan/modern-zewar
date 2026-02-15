@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
-import { theme } from "../theme";
+// import { theme } from "../theme";
 
 export default function Home() {
   const [category, setCategory] = useState("all");
