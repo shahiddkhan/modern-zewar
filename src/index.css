@@ -5,10 +5,11 @@
 }
 
 body {
-  background-color: #F5E6C8;
+  background-color: #FFFFFF;
   font-family: "Playfair Display", serif;
-  color: #722F37;
+  color: #000000;
 }
+
 
 button {
   font-family: inherit;

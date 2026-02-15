@@ -19,38 +19,40 @@ export default function Home() {
       <div
         style={{
           minHeight: "100vh",
-          padding: "60px 20px",
-          background: theme.cream,
+          padding: "70px 20px",
+          background: "#FFFFFF",
         }}
       >
         <div style={{ maxWidth: "1200px", margin: "auto" }}>
           <h1
             style={{
               textAlign: "center",
-              fontSize: "clamp(32px,5vw,48px)",
+              fontSize: "clamp(34px,5vw,52px)",
               marginBottom: "20px",
-              color: theme.maroon,
+              color: "#000",
+              fontWeight: "600",
             }}
           >
-            Modern Women's Accessories
+            Modern Women’s Accessories
           </h1>
 
           <p
             style={{
               textAlign: "center",
-              marginBottom: "60px",
-              opacity: 0.8,
+              marginBottom: "70px",
+              color: "#555",
+              fontSize: "16px",
             }}
           >
-            Discover premium handcrafted jewelry crafted for elegance.
+            Discover rings, bracelets, chains & luxury pieces crafted for elegance.
           </p>
 
           <div
             style={{
               display: "grid",
               gridTemplateColumns:
-                "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "30px",
+                "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "35px",
             }}
           >
             {filtered.map((product) => (

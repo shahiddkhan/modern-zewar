@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { theme } from "../theme";
 
 export default function Navbar({ setCategory }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -31,18 +30,19 @@ export default function Navbar({ setCategory }) {
         position: "sticky",
         top: 0,
         zIndex: 1000,
-        background: theme.maroon,
-        padding: "15px 40px",
+        background: "#000000",
+        padding: "18px 40px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        boxShadow: "0 5px 25px rgba(0,0,0,0.2)",
+        boxShadow: "0 4px 25px rgba(0,0,0,0.4)",
       }}
     >
       <h2
         style={{
           color: theme.gold,
           letterSpacing: "2px",
+          fontWeight: "600",
           cursor: "pointer",
         }}
         onClick={() => setCategory("all")}
@@ -51,7 +51,7 @@ export default function Navbar({ setCategory }) {
       </h2>
 
       {!isMobile && (
-        <div style={{ display: "flex", gap: "15px" }}>
+        <div style={{ display: "flex", gap: "14px" }}>
           {categories.map((c) => (
             <button
               key={c.key}
@@ -60,10 +60,19 @@ export default function Navbar({ setCategory }) {
                 background: "transparent",
                 border: `1px solid ${theme.gold}`,
                 color: theme.gold,
-                padding: "8px 18px",
-                borderRadius: "30px",
+                padding: "6px 16px",
+                borderRadius: "25px",
                 cursor: "pointer",
-                transition: "0.3s",
+                fontSize: "14px",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = theme.gold;
+                e.target.style.color = "#000";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = "transparent";
+                e.target.style.color = theme.gold;
               }}
             >
               {c.label}

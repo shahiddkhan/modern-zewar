@@ -12,20 +12,21 @@ export default function ProductCard({ product }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        background: theme.softWhite,
-        borderRadius: "20px",
+        background: "#FFFFFF",
+        borderRadius: "18px",
         padding: "20px",
-        boxShadow: theme.shadow,
+        boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
         textAlign: "center",
         cursor: "pointer",
-        transition: "0.3s",
-        transform: hover ? "translateY(-8px)" : "translateY(0)",
+        transition: "all 0.3s ease",
+        transform: hover ? "translateY(-10px)" : "translateY(0)",
       }}
     >
       <div
         style={{
           overflow: "hidden",
-          borderRadius: "15px",
+          borderRadius: "12px",
+          marginBottom: "15px",
         }}
       >
         <img
@@ -33,23 +34,37 @@ export default function ProductCard({ product }) {
           alt={product.name}
           style={{
             width: "100%",
-            height: "250px",
+            height: "260px",
             objectFit: "cover",
-            transition: "0.4s",
-            transform: hover ? "scale(1.05)" : "scale(1)",
+            transition: "transform 0.4s ease",
+            transform: hover ? "scale(1.07)" : "scale(1)",
           }}
         />
       </div>
 
       <h3
         style={{
-          marginTop: "15px",
-          color: theme.maroon,
+          marginBottom: "10px",
+          color: "#000",
           fontWeight: "600",
         }}
       >
         {product.name}
       </h3>
+
+      <button
+        style={{
+          background: theme.gold,
+          border: "none",
+          color: "#000",
+          padding: "8px 18px",
+          borderRadius: "20px",
+          fontWeight: "500",
+          cursor: "pointer",
+        }}
+      >
+        Order on WhatsApp
+      </button>
     </div>
   );
 }

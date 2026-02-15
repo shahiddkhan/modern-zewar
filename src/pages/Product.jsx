@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import products from "../data/products";
 import { WHATSAPP_NUMBER } from "../config";
+import { theme } from "../theme";
 
 export default function Product() {
   const { id } = useParams();
@@ -35,21 +36,20 @@ Product Link: ${productLink}`
   return (
     <div
       style={{
-        background: "#EFDFBB",
+        background: "#FFFFFF",
         minHeight: "100vh",
-        padding: "60px 20px",
+        padding: "80px 20px",
       }}
     >
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "60px",
+          gap: "70px",
           alignItems: "center",
           justifyContent: "center",
           maxWidth: "1200px",
           margin: "0 auto",
-          animation: "fadeIn 0.6s ease",
         }}
       >
         {/* IMAGE */}
@@ -59,8 +59,8 @@ Product Link: ${productLink}`
           style={{
             width: "100%",
             maxWidth: "480px",
-            borderRadius: "24px",
-            boxShadow: "0 20px 50px rgba(114,47,55,0.25)",
+            borderRadius: "20px",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.1)",
           }}
         />
 
@@ -68,9 +68,10 @@ Product Link: ${productLink}`
         <div style={{ maxWidth: "520px" }}>
           <h1
             style={{
-              fontSize: "34px",
+              fontSize: "38px",
               marginBottom: "18px",
-              color: "#722F37",
+              color: "#000",
+              fontWeight: "600",
             }}
           >
             {product.name}
@@ -80,8 +81,7 @@ Product Link: ${productLink}`
             style={{
               marginBottom: "25px",
               fontSize: "18px",
-              color: "#722F37",
-              opacity: 0.85,
+              color: "#555",
             }}
           >
             {description}
@@ -90,8 +90,8 @@ Product Link: ${productLink}`
           <h2
             style={{
               marginBottom: "35px",
-              color: "#722F37",
-              fontSize: "26px",
+              color: theme.gold,
+              fontSize: "30px",
               fontWeight: "600",
             }}
           >
@@ -104,15 +104,23 @@ Product Link: ${productLink}`
             rel="noopener noreferrer"
             style={{
               display: "inline-block",
-              padding: "15px 32px",
-              background: "#722F37",
-              color: "#EFDFBB",
-              borderRadius: "999px",
+              padding: "14px 32px",
+              background: theme.gold,
+              color: "#000",
+              borderRadius: "30px",
               textDecoration: "none",
               fontWeight: "600",
               marginRight: "15px",
               marginBottom: "15px",
-              transition: "0.3s ease",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = "#000";
+              e.target.style.color = theme.gold;
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = theme.gold;
+              e.target.style.color = "#000";
             }}
           >
             Order on WhatsApp
@@ -121,12 +129,21 @@ Product Link: ${productLink}`
           <button
             onClick={() => navigate(-1)}
             style={{
-              padding: "10px 24px",
-              borderRadius: "999px",
-              border: "1px solid #722F37",
+              padding: "12px 28px",
+              borderRadius: "30px",
+              border: `1px solid ${theme.gold}`,
               background: "transparent",
-              color: "#722F37",
+              color: theme.gold,
               cursor: "pointer",
+              fontWeight: "500",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = theme.gold;
+              e.target.style.color = "#000";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = "transparent";
+              e.target.style.color = theme.gold;
             }}
           >
             Back
